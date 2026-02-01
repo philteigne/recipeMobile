@@ -25,6 +25,22 @@ In the output, you'll find options to open the app in a
 
 You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
+## API config
+
+Store API URL (and optional keys) in a **`.env`** file at the project root (it’s gitignored). Use the **`EXPO_PUBLIC_`** prefix so Expo injects them into the bundle automatically. The app reads them in `consts/api.ts` (no app.config needed).
+
+Create `.env` with:
+
+```env
+EXPO_PUBLIC_API_URL=http://localhost:3000
+```
+
+- **iOS Simulator:** `http://localhost:3000`
+- **Android Emulator:** `http://10.0.2.2:3000`
+- **Physical device:** `http://YOUR_MACHINE_IP:3000` (e.g. `http://192.168.1.5:3000`)
+
+Never commit real secrets. For user auth the API uses the `x-user-id` header; replace the dev placeholder in the create-recipe screen with a real token once you add login.
+
 ## Get a fresh project
 
 When you're ready, run:
