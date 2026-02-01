@@ -8,7 +8,9 @@ import { Platform } from 'react-native';
 const tintColorLight = '#0a7ea4';
 const tintColorDark = '#fff';
 
-export const Colors = {
+const appTheme: 'light' | 'dark' = 'light';
+
+const themeColors = {
   light: {
     text: '#11181C',
     background: '#fff',
@@ -26,6 +28,22 @@ export const Colors = {
     tabIconSelected: tintColorDark,
   },
 };
+
+// Export Colors that automatically uses the current theme
+export const Colors = new Proxy({} as typeof themeColors.light, {
+  get: (_, prop: keyof typeof themeColors.light) => {
+    return themeColors[appTheme][prop];
+  },
+});
+
+export const Spacing = {
+  xs: 4,
+  sm: 8,
+  md: 16,
+  lg: 24,
+  xl: 32,
+  xxl: 40,
+}
 
 export const Fonts = Platform.select({
   ios: {
