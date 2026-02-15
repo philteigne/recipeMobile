@@ -46,6 +46,52 @@ export const Spacing = {
   xxl: 40,
 }
 
+/**
+ * Shared typography & spacing tokens for recipe content.
+ * Used by both the editor (CSS in WebView) and the viewer (RN StyleSheet)
+ * to keep rendering consistent.
+ */
+export const ContentStyles = {
+  body: {
+    fontSize: 16,
+    lineHeight: 24,
+  },
+  h1: {
+    fontSize: 28,
+    fontWeight: "700" as const,
+    marginTop: 12,
+    marginBottom: 4,
+  },
+  h2: {
+    fontSize: 22,
+    fontWeight: "600" as const,
+    marginTop: 12,
+    marginBottom: 4,
+  },
+  h3: {
+    fontSize: 18,
+    fontWeight: "600" as const,
+    marginTop: 12,
+    marginBottom: 4,
+  },
+  paragraph: {
+    marginTop: 4,
+    marginBottom: 4,
+  },
+  list: {
+    paddingLeft: 24,
+    marginTop: 4,
+    marginBottom: 4,
+  },
+  listItem: {
+    marginBottom: 2,
+  },
+  blockquote: {
+    borderLeftWidth: 3,
+    paddingLeft: 16,
+  },
+} as const;
+
 export const Fonts = Platform.select({
   ios: {
     /** iOS `UIFontDescriptorSystemDesignDefault` */
