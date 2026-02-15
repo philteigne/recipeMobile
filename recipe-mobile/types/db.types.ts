@@ -1,3 +1,5 @@
+import type { ProseMirrorDoc } from './editor.types';
+
 export type Library = {
   id: string;
   creatorId: string;
@@ -6,9 +8,7 @@ export type Library = {
 export type Recipe = {
   id: string;
   title: string;
-  subtitle: string | null;
-  description: string | null;
-  content: string;
+  content: ProseMirrorDoc;
   createdAt: string;
   removedAt: string | null;
   creatorId: string;

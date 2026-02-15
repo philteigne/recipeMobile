@@ -1,5 +1,5 @@
 import { sql } from "../db";
-import type { Recipes } from "../types/db.types";
+import type { Recipes, ProseMirrorDoc } from "../types/db.types";
 
 export const recipeService = {
   getRecipesByCreatorId: async (creator_id: string): Promise<Recipes[]> => {
@@ -12,31 +12,25 @@ export const recipeService = {
     creator_id: string,
     body: {
       title: string;
-      subtitle: string | null;
-      description: string | null;
-      content: string;
+      content: ProseMirrorDoc;
     },
   ): Promise<Recipes> => {
     const [recipe] = await sql<Recipes[]>`
     INSERT INTO recipes (
       title,
-      subtitle,
-      description,
       content,
       creator_id
     )
     VALUES (
       ${body.title},
-      ${body.subtitle},
-      ${body.description},
-      ${body.content},
+      ${JSON.stringify(body.content)}::jsonb,
       ${creator_id}
     )
     RETURNING *
     `;
 
     if (!recipe) {
-      throw new Error("Failed to create resource"); 
+      throw new Error('Failed to create resource'); 
     }
 
     return recipe;

@@ -27,7 +27,6 @@ export default function UserRecipesScreen() {
             onPress={() => router.push(`/recipe/${recipe.id}`)}
           >
             <H2>{recipe.title}</H2>
-            <H3>{recipe.subtitle}</H3>
           </PressableCard>
         ))}
       </ScrollView>
