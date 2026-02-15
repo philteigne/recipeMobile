@@ -11,9 +11,7 @@ CREATE TABLE users (
 CREATE TABLE recipes (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   title text NOT NULL,
-  subtitle text,
-  description text,
-  content text NOT NULL,
+  content jsonb NOT NULL,
   created_at timestamp NOT NULL DEFAULT NOW(),
   removed_at timestamp,
   creator_id uuid NOT NULL REFERENCES users(id)
